@@ -32,9 +32,9 @@ public class LogWorkEntity {
     private Time workTime;
     @Column(name = "overtime")
     private Time overTime;
-    @ManyToMany(mappedBy = "logWorkEntities")
-    private List<UserEntity> userEntities;
 
+    @ManyToOne
+    private UserEntity userEntity;
 
     @OneToMany(mappedBy = "logWork")
     private List<RequestEntity> requestEntityList;
