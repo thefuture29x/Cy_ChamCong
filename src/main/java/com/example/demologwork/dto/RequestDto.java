@@ -15,5 +15,7 @@ public class RequestDto {
     private long id;
     private String title;
     private String content;
-    private Time timeRequest;
+    private String timeRequest;
+    private boolean status;
+    private LogWorkDto logWorkDto;
 }
