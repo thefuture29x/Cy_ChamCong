@@ -9,12 +9,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>Logwork_Hackintosh</artifactId>
+
+    <artifactId>demoLogWork</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Logwork_Hackintosh</name>
-    <description>Logwork_Hackintosh</description>
+    <name>demoLogWork</name>
+    <description>demoLogWork</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>1.8</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -35,6 +36,11 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
