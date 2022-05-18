@@ -12,6 +12,7 @@ import com.example.demologwork.repository.IRoleRepository;
 import com.example.demologwork.repository.IUserRepository;
 import com.example.demologwork.service.IUserService;
 import com.example.demologwork.service.impl.UserDetailsImpl;
+import com.example.demologwork.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +34,7 @@ public class UserResource {
     @Autowired
     IUserService iUserService;
 
+
     @Transactional
     @GetMapping("/get-all")
     public Object getAllUser(Pageable pageable){
@@ -42,7 +44,8 @@ public class UserResource {
 
     @GetMapping("/get-user-by-id/{id}")
     public Object getUserByID(@PathVariable Long id){
-        return null;
+        UserDto userDto = UserDto.toDto((UserEntity) iUserService.findById(id));
+        return ResponseDTO.of(userDto,"Find user by Id");
     }
 
 

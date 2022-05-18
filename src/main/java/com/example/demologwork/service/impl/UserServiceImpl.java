@@ -42,7 +42,7 @@ public class UserServiceImpl implements IUserService<UserEntity, UserModel, Long
 
     @Override
     public UserEntity findById(Long id) {
-        return null;
+        return iUserRepository.findById(id).orElseThrow((() -> new RuntimeException("Not found")));
     }
 
     @Override
