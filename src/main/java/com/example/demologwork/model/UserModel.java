@@ -11,11 +11,11 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Data
-public class User {
+public class UserModel {
     private long id;
     private String username;
     private String password;
     private long leaderId;
-    private List<Role> roleList;
-    private List<LogWork> logWorkList;
+    private List<RoleModel> roleList;
+    private List<LogWorkModel> logWorkList;
 }

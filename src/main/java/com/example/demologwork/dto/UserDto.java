@@ -1,7 +1,5 @@
 package com.example.demologwork.dto;
 
-import com.example.demologwork.model.LogWork;
-import com.example.demologwork.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
