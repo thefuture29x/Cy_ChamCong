@@ -40,5 +40,10 @@ public class UserResource {
         return ResponseDTO.of(listUser,"Find all user");
     }
 
+//    @GetMapping("/get-user-by-id/{id}")
+//    public Object getUserByID(@PathVariable Long id){
+//
+//    }
+
 
 }
