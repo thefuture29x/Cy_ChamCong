@@ -1,13 +1,13 @@
-package com.example.logwork_hackintosh;
+package com.example.demologwork;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LogworkHackintoshApplication {
+public class DemoLogWorkApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LogworkHackintoshApplication.class, args);
+        SpringApplication.run(DemoLogWorkApplication.class, args);
     }
 
 }
