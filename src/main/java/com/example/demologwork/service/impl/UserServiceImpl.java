@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements IUserService<UserDto, UserModel, Long>, UserDetailsService {
+public class UserServiceImpl implements IUserService<UserEntity, UserModel, Long>, UserDetailsService {
     @Autowired
     IUserRepository iUserRepository;
     @Override
@@ -31,32 +31,32 @@ public class UserServiceImpl implements IUserService<UserDto, UserModel, Long>, 
     }
 
     @Override
-    public List<UserDto> findAll() {
+    public List<UserEntity> findAll() {
         return null;
     }
 
     @Override
-    public Page<UserDto> findAll(Pageable page) {
+    public Page<UserEntity> findAll(Pageable page) {
+        return iUserRepository.findAll(page);
+    }
+
+    @Override
+    public UserEntity findById(Long id) {
         return null;
     }
 
     @Override
-    public UserDto findById(Long id) {
+    public UserEntity add(UserModel model) {
         return null;
     }
 
     @Override
-    public UserDto add(UserModel model) {
+    public List<UserEntity> add(List<UserModel> model) {
         return null;
     }
 
     @Override
-    public List<UserDto> add(List<UserModel> model) {
-        return null;
-    }
-
-    @Override
-    public UserDto update(UserModel model) {
+    public UserEntity update(UserModel model) {
         return null;
     }
 
