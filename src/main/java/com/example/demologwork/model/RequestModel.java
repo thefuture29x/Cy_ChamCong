@@ -1,5 +1,7 @@
 package com.example.demologwork.model;
 
+import com.example.demologwork.dto.RequestDto;
+import com.example.demologwork.entity.RequestEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,4 +18,24 @@ public class RequestModel {
     private String title;
     private String content;
     private Time timeRequest;
+
+    public static RequestModel toDto(RequestEntity entity) {
+        return RequestModel.builder()
+                .id(entity.getId())
+                .title(entity.getTitle())
+                .content(entity.getContent())
+                .timeRequest(entity.getTimeRequest())
+                .build();
+
+    }
+
+    public static RequestEntity toEnity(RequestModel model) {
+        return RequestEntity.builder()
+                .id(model.getId())
+                .title(model.getTitle())
+                .content(model.getContent())
+                .timeRequest(model.getTimeRequest())
+                .build();
+
+    }
 }
