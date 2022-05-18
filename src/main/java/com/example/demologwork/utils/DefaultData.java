@@ -81,7 +81,7 @@ public class DefaultData implements ApplicationListener<ContextRefreshedEvent> {
         }
         if (iUserRepository.findByUsername("USER2") == null) {
             iUserRepository.save(new UserEntity(
-                    4L,
+                    7L,
                     "USER2",
                     passwordEncoder.encode("123456"),
                     5L,
@@ -91,7 +91,7 @@ public class DefaultData implements ApplicationListener<ContextRefreshedEvent> {
         }
         if (iUserRepository.findByUsername("USER3") == null) {
             iUserRepository.save(new UserEntity(
-                    5L,
+                    8L,
                     "USER3",
                     passwordEncoder.encode("123456"),
                     5L,
