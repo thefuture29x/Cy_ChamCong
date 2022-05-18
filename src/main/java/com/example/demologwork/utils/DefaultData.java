@@ -69,12 +69,32 @@ public class DefaultData implements ApplicationListener<ContextRefreshedEvent> {
                     null
             ));
         }
-        if (iUserRepository.findByUsername("USER") == null) {
+        if (iUserRepository.findByUsername("USER1") == null) {
             iUserRepository.save(new UserEntity(
                     3L,
-                    "USER",
+                    "USER1",
                     passwordEncoder.encode("123456"),
-                    null,
+                    5L,
+                    listRoleUser,
+                    null
+            ));
+        }
+        if (iUserRepository.findByUsername("USER2") == null) {
+            iUserRepository.save(new UserEntity(
+                    4L,
+                    "USER2",
+                    passwordEncoder.encode("123456"),
+                    5L,
+                    listRoleUser,
+                    null
+            ));
+        }
+        if (iUserRepository.findByUsername("USER3") == null) {
+            iUserRepository.save(new UserEntity(
+                    5L,
+                    "USER3",
+                    passwordEncoder.encode("123456"),
+                    5L,
                     listRoleUser,
                     null
             ));
