@@ -11,5 +11,4 @@ public interface IBaseService <E, M, K>{
     Page<E> findAll(Pageable page);
     E findById(long id);
     E findById(K id);
-    E add()
 }

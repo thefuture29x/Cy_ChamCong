@@ -32,8 +32,10 @@ public class LogWorkEntity {
     private Time workTime;
     @Column(name = "overtime")
     private Time overTime;
+
     @ManyToOne
     private UserEntity userEntity;
+
     @OneToMany(mappedBy = "logWork")
     private List<RequestEntity> requestEntityList;
 }

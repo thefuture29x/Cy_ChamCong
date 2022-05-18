@@ -1,13 +1,11 @@
 package com.example.demologwork.dto;
 
-import com.example.demologwork.model.Request;
-import com.example.demologwork.model.User;
+//import com.example.demologwork.model.Request;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Time;
 import java.util.List;
 
 @NoArgsConstructor

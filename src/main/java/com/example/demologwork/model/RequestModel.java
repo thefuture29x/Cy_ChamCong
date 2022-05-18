@@ -5,17 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.sql.Time;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
-public class User {
+public class RequestModel {
     private long id;
-    private String username;
-    private String password;
-    private long leaderId;
-    private List<Role> roleList;
-    private List<LogWork> logWorkList;
+    private String title;
+    private String content;
+    private Time timeRequest;
 }

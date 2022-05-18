@@ -1,20 +1,21 @@
 package com.example.demologwork.model;
 
-import com.example.demologwork.dto.LogWorkDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
-public class Request {
+public class UserModel {
     private long id;
-    private String title;
-    private String content;
-    private String timeRequest;
-    private boolean status;
-    private LogWork logWork;
+    private String username;
+    private String password;
+    private long leaderId;
+    private List<RoleModel> roleList;
+    private List<LogWorkModel> logWorkList;
 }

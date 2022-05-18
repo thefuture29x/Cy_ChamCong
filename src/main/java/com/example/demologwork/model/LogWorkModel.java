@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Data
-public class LogWork {
+public class LogWorkModel {
     private long id;
     private int day;
     private int month;
@@ -21,6 +21,6 @@ public class LogWork {
     private Time endTime;
     private Time workTime;
     private Time overTime;
-    private User userModel;
-    private List<Request> requestList;
+    private UserModel userModel;
+    private List<RequestModel> requestList;
 }
