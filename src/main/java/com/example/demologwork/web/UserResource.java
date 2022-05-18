@@ -49,5 +49,10 @@ public class UserResource {
     }
 
 
+    public Object test(){
+        return null;
+    }
+
+
 
 }
