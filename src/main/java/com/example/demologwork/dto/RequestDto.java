@@ -19,17 +19,18 @@ public class RequestDto implements Serializable {
     private String title;
     private String content;
     private Time timeRequest;
-    private Boolean status;
-    private LogWorkEntity logWork;
-    public static RequestDto EntityToDto(RequestEntity requestEntity) {
+    private String status;
+    private Long idLogWork;
+
+
+    public static RequestDto toDto(RequestEntity entity) {
         return RequestDto.builder()
-                .id(requestEntity.getId())
-                .title(requestEntity.getTitle())
-                .content(requestEntity.getContent())
-                .timeRequest(requestEntity.getTimeRequest())
-                .status(requestEntity.getStatus())
-               // .logWork(requestEntity.getLogWork().)
-                //  .anses(questionEntity.getListaAnswerEntity() != null ? questionEntity.getListaAnswerEntity().stream().map(AnswerDto::EntityToDto).collect(java.util.stream.Collectors.toList()) : null)
+                .id(entity.getId())
+                .title(entity.getTitle())
+                .content(entity.getContent())
+                .status(entity.getStatus())
+                .timeRequest(entity.getTimeRequest())
+                .idLogWork(entity.getLogWork().getId())
                 .build();
     }
 }

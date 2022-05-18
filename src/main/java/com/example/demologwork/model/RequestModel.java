@@ -12,8 +12,10 @@ import java.sql.Time;
 @Builder
 @Data
 public class RequestModel {
-    private long id;
+    private Long id;
     private String title;
     private String content;
     private Time timeRequest;
+    private String status;
+    private Long idLogWork;
 }

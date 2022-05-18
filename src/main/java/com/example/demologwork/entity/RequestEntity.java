@@ -22,8 +22,8 @@ public class RequestEntity {
     private String content;
     @Column(name = "timerequest")
     private Time timeRequest;
-    private Boolean status;
+    private String status;
     @ManyToOne
-    @JoinColumn(name = "id_logwork", nullable = false)
+    @JoinColumn(name = "id_logwork")
     private LogWorkEntity logWork;
 }
