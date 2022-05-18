@@ -9,6 +9,6 @@
 
 FROM openjdk:11-jdk
 WORKDIR jar
-COPY target/cy_chamcong-0.0.1-SNAPSHOT.jar /app-jar/cy_chamcong.jar
+COPY target/demoLogWork-0.0.1-SNAPSHOT.jar /app-jar/demoLogWork.jar
 EXPOSE 8088
-CMD ["java", "-jar", "/app-jar/cy_chamcong.jar"]
+CMD ["java", "-jar", "/app-jar/demoLogWork.jar"]
