@@ -1,9 +1,6 @@
 package com.example.demologwork.dto;
 
-//import com.example.demologwork.model.Request;
 import com.example.demologwork.entity.LogWorkEntity;
-import com.example.demologwork.entity.RoleEntity;
-import com.example.demologwork.model.LogWorkModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
