@@ -18,6 +18,6 @@ public class LoginResponse {
     private String email;
     private String accessToken;
     private String tokenType ="Bearer";
-    private AtomicReference<Long> role;
+    private Long role;
 
 }

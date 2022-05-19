@@ -5,6 +5,7 @@ import com.example.demologwork.dto.ResponseDTO;
 import com.example.demologwork.jwt.JwtTokenProvider;
 import com.example.demologwork.jwt.payload.request.LoginRequest;
 import com.example.demologwork.jwt.payload.response.LoginResponse;
+import com.example.demologwork.jwt.payload.response.RoleResponse;
 import com.example.demologwork.repository.IRoleRepository;
 import com.example.demologwork.repository.IUserRepository;
 import com.example.demologwork.service.impl.UserDetailsImpl;
@@ -50,13 +51,14 @@ public class LoginResource {
         String jwtToken = jwtTokenProvider.generateTokenFormUsername(userDetails.getUsername());
 
         AtomicReference<Long> roleId = new AtomicReference<>(0L);
+        RoleResponse roleResponse = new RoleResponse();
         userDetails.getAuthorities().stream().forEach(role ->{
                 if (role.equals("ROLE_USER")) {
-                    roleId.set(3L);
+                    roleResponse.setIdrole(3L);
                 }else if(role.equals("ROLE_LEADER")){
-                    roleId.set(2L);
+                    roleResponse.setIdrole(2L);
                 }else{
-                    roleId.set(1L);
+                    roleResponse.setIdrole(1L);
                 }
 
             }
@@ -68,7 +70,7 @@ public class LoginResource {
                 .username(userDetails.getUsername())
                 .accessToken(jwtToken)
                 .tokenType(new LoginResponse().getTokenType())
-                .role(roleId)
+                .role(roleResponse.getIdrole())
                 .build(),"Login");
 
     }
