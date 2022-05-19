@@ -48,16 +48,17 @@ public class LoginResource {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         if (userDetails == null) throw new Exception("User not found !");
         String jwtToken = jwtTokenProvider.generateTokenFormUsername(userDetails.getUsername());
-        AtomicReference<Long> roleId = new AtomicReference<>(0L);
 
+        AtomicReference<Long> roleId = new AtomicReference<>(0L);
         userDetails.getAuthorities().stream().forEach(role ->{
-                if (role.equals("ROLE_ADMIN")) {
-                    roleId.set(1L);
+                if (role.equals("ROLE_USER")) {
+                    roleId.set(3L);
                 }else if(role.equals("ROLE_LEADER")){
                     roleId.set(2L);
                 }else{
-                    roleId.set(3L);
+                    roleId.set(1L);
                 }
+
             }
         );
 
