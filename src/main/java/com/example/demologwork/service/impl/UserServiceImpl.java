@@ -64,7 +64,8 @@ public class UserServiceImpl implements IUserService<UserEntity, UserModel, Long
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        UserEntity userEntity = iUserRepository.findByUsername(username);
+        return new UserDetailsImpl(userEntity);
     }
 
 //    public UserEntity modelToEntity(UserModel model){
