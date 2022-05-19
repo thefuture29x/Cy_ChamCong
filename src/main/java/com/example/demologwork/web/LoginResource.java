@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
 @RequestMapping("/v1/api")
@@ -49,16 +48,26 @@ public class LoginResource {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         if (userDetails == null) throw new Exception("User not found !");
         String jwtToken = jwtTokenProvider.generateTokenFormUsername(userDetails.getUsername());
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
-                .collect(Collectors.toList());
+        AtomicReference<Long> roleId = new AtomicReference<>(0L);
+
+        userDetails.getAuthorities().stream().forEach(role ->{
+                if (role.equals("ROLE_ADMIN")) {
+                    roleId.set(1L);
+                }else if(role.equals("ROLE_LEADER")){
+                    roleId.set(2L);
+                }else{
+                    roleId.set(3L);
+                }
+            }
+        );
+
 
         return ResponseDTO.of(LoginResponse.builder()
                 .id(userDetails.getUserEntity().getId())
                 .username(userDetails.getUsername())
                 .accessToken(jwtToken)
                 .tokenType(new LoginResponse().getTokenType())
-                .role(roles)
+                .role(roleId)
                 .build(),"Login");
 
     }

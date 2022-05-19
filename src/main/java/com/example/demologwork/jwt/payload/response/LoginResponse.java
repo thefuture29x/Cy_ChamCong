@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +18,6 @@ public class LoginResponse {
     private String email;
     private String accessToken;
     private String tokenType ="Bearer";
-    private List<String> role;
+    private AtomicReference<Long> role;
 
 }
