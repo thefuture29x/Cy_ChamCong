@@ -55,4 +55,21 @@ public class LogWorkModel {
                 .requestEntityList(model.getRequestList() != null ? model.getRequestList().stream().map(RequestModel::toEnity).collect(Collectors.toList()) : null)
                 .build();
     }
+    private Long userId;
+    private List<Long> requestIds;
+
+    public static LogWorkDto modelToDto(LogWorkModel model){
+        LogWorkDto dto = new LogWorkDto();
+        dto.setId(model.getId());
+        dto.setDay(model.getDay());
+        dto.setMonth(model.getMonth());
+        dto.setYear(model.getYear());
+        dto.setStartTime(model.getStartTime());
+        dto.setEndTime(model.getEndTime());
+        dto.setWorkTime(model.getWorkTime());
+        dto.setOverTime(model.getOverTime());
+        dto.setUserId(model.getUserId());
+        dto.setRequestIds(model.getRequestIds());
+        return dto;
+    }
 }

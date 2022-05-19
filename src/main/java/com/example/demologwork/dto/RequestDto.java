@@ -2,6 +2,7 @@ package com.example.demologwork.dto;
 
 import com.example.demologwork.entity.LogWorkEntity;
 import com.example.demologwork.entity.RequestEntity;
+import com.example.demologwork.model.RequestModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +27,18 @@ public class RequestDto {
                 .content(entity.getContent())
                 .timeRequest(entity.getTimeRequest())
                 .build();
+    }
 
+//    private String timeRequest;
+    private boolean status;
+    private Long logWorkId;
+
+    public static RequestModel dtoToModel(RequestDto dto){
+        RequestModel model = new RequestModel();
+        model.setId(dto.getId());
+        model.setTitle(dto.getTitle());
+        model.setContent(dto.getContent());
+        model.setTimeRequest(dto.getTimeRequest());
+        return model;
     }
 }

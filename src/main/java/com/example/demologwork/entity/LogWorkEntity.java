@@ -34,6 +34,7 @@ public class LogWorkEntity {
     private Time overTime;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
     @OneToMany(mappedBy = "logWork")
