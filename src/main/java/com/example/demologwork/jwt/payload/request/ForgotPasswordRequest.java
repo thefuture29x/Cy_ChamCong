@@ -6,20 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Data
-<<<<<<< HEAD:src/main/java/com/example/demologwork/model/Request.java
-public class Request {
+public class ForgotPasswordRequest {
     private long id;
     private String title;
     private String content;
     private String timeRequest;
     private boolean status;
-    private LogWork logWork;
-=======
-@AllArgsConstructor
-public class ForgotPasswordRequest {
-    private String email;
->>>>>>> 5bb6b2b2fcb0c03ddac77b22fa601cae001b6d81:src/main/java/com/example/demologwork/jwt/payload/request/ForgotPasswordRequest.java
+    private LogWorkDto logWork;
 }

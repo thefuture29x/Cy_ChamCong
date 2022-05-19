@@ -1,9 +1,9 @@
 package com.example.demologwork.service;
 
+import com.example.demologwork.dto.UserDto;
 import com.example.demologwork.entity.UserEntity;
+import com.example.demologwork.service.base.IBaseService;
 
-public interface IUserService<T,M,K> extends IBaseService<T,M,K>{
+public interface IUserService<E, D, L> extends IBaseService<UserEntity, UserDto, Long> {
     UserEntity findByToken(String token);
-    void updateUserToken(String email, String token);
-    void sendMailResetPassword(String from,String toAddress,String subject,String content,String tokenString);
 }

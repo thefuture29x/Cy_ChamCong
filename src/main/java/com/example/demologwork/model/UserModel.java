@@ -16,6 +16,6 @@ public class UserModel {
     private String username;
     private String password;
     private long leaderId;
-    private List<RoleModel> roleList;
-    private List<LogWorkModel> logWorkList;
+    private List<Long> roleIds;
+    private List<Long> logWorkIds;
 }

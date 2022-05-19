@@ -24,18 +24,18 @@ public class DefaultData implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        if (iRoleRepository.findByRole("ROLE_ADMIN") == null) {
+        if (iRoleRepository.findByName("ROLE_ADMIN") == null) {
             iRoleRepository.save(new RoleEntity(1L, "ROLE_ADMIN", null));
         }
-        if (iRoleRepository.findByRole("ROLE_LEADER") == null) {
+        if (iRoleRepository.findByName("ROLE_LEADER") == null) {
             iRoleRepository.save(new RoleEntity(2L, "ROLE_LEADER", null));
         }
-        if (iRoleRepository.findByRole("ROLE_USER") == null) {
+        if (iRoleRepository.findByName("ROLE_USER") == null) {
             iRoleRepository.save(new RoleEntity(3L, "ROLE_USER", null));
         }
-        RoleEntity roleAdmin = iRoleRepository.findByRole("ROLE_ADMIN");
-        RoleEntity roleLeader = iRoleRepository.findByRole("ROLE_LEADER");
-        RoleEntity roleUser = iRoleRepository.findByRole("ROLE_USER");
+        RoleEntity roleAdmin = iRoleRepository.findByName("ROLE_ADMIN");
+        RoleEntity roleLeader = iRoleRepository.findByName("ROLE_LEADER");
+        RoleEntity roleUser = iRoleRepository.findByName("ROLE_USER");
 
         List<RoleEntity> listRoleAdmin = new ArrayList<>();
         listRoleAdmin.add(roleAdmin);

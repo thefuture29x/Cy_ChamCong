@@ -27,7 +27,6 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "id_role"))
     private List<RoleEntity> roleEntityList;
 
-    @OneToMany
-    @JoinColumn(name = "id_logwork")
+    @OneToMany(mappedBy = "userEntity")
     private List<LogWorkEntity> logWorkEntities;
 }

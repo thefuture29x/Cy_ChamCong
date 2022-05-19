@@ -5,10 +5,13 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-//E: entity, M: model, K: key
-public interface IBaseService <E, M, K>{
+//E: entity, D: dto, K: key
+public interface IBaseService <E, D, K>{
     List<E> findAll();
     Page<E> findAll(Pageable page);
-    E findById(long id);
     E findById(K id);
+    E add(D dto);
+    List<E> add(List<D> dtoList);
+    E update(D dto);
+    boolean deleteById(K id);
 }
