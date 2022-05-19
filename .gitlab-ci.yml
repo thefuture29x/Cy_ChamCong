@@ -16,6 +16,7 @@ buildJar:
   script:
     - echo "Building Jar"
     - mv ./src/main/resources/application.prod.properties ./src/main/resources/application.properties
+    - cat ./src/main/resources/application.properties
     - mvn clean install -DskipTests #build file jar
     - echo "Build Jar Image" #start build image jar
     - docker build -t $TAG_COMMIT$JAR . #build image jar
