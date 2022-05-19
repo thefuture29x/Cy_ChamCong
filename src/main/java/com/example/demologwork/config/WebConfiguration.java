@@ -22,10 +22,10 @@ public class WebConfiguration implements WebMvcConfigurer {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOriginPatterns("http://3.0.17.105:[*]", "*.*.*.*:[*]")
-                        .allowedOrigins("http://3.0.17.105:3000/")
+                        .allowedOriginPatterns("http://*.*.*.*:[*]")
+                        .allowedOrigins("*.*.*.*:[*]")
                         .allowCredentials(true)
-                        .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS");
+                        .allowedMethods("*");
             }
         };
     }

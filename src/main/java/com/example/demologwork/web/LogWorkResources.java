@@ -1,20 +1,23 @@
 package com.example.demologwork.web;
 
 import com.example.demologwork.dto.ResponseDTO;
+import com.example.demologwork.model.LogWorkModel;
 import com.example.demologwork.service.impl.LogWorkServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
-@RequestMapping(value = "/api/logwork")
+@RequestMapping(value = "/v1/api/logwork")
 @RestController
 public class LogWorkResources {
     @Autowired
     LogWorkServiceImpl logWorkService;
+
+    @PostMapping
+    public Object saveLogWork(@RequestBody LogWorkModel logWorkModel){
+        return ResponseDTO.of(logWorkService.add(logWorkModel),"Save logwork");
+    }
 
     @GetMapping(value = "/getAllLogWork")
     public Object getAllLogWork(){

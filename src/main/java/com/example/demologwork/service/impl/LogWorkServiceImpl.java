@@ -19,11 +19,65 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LogWorkServiceImpl implements ILogWorkService<LogWorkEntity, LogWorkModel, Long>{
     @Autowired
     ILogWorkRepository iLogWorkRepository;
+    @Autowired
+    IUserRepository iUserRepository;
+    @Autowired
+    IRequestRepository iRequestRepository;
+
+    @Override
+    public List<LogWorkEntity> findAll() {
+        return iLogWorkRepository.findAll();
+    }
+
+    @Override
+    public Page<LogWorkEntity> findAll(Pageable page) {
+        return iLogWorkRepository.findAll(page);
+    }
+
+    @Override
+    public LogWorkEntity findById(Long id) {
+        return iLogWorkRepository.findById(id).get();
+    }
+
+    @Override
+    public LogWorkEntity add(LogWorkModel model) {
+        LogWorkEntity logWorkEntity = LogWorkModel.toEntity(model);
+        return iLogWorkRepository.save(logWorkEntity);
+    }
+
+    @Override
+    public List<LogWorkEntity> add(List<LogWorkModel> model) {
+        return null;
+    }
+
+    @Override
+    public LogWorkEntity update(LogWorkModel model) {
+        //        if(logWorkRepository.findById(dto.getId()).isPresent()){
+//            LogWorkModel model = LogWorkDto.dtoToModel(dto);
+//            LogWorkEntity entity = this.modelToEntity(model);
+//            return logWorkRepository.save(entity);
+//        }else {
+//            return null;
+//        }
+        return null;
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+
+        return false;
+    }
+
+    @Override
+    public boolean deleteByIds(List<Long> id) {
+        return false;
+    }
 
 //    @Override
 //    public List<LogWorkEntity> findAll() {
@@ -122,47 +176,46 @@ public class LogWorkServiceImpl implements ILogWorkService<LogWorkEntity, LogWor
 //        }
 //    }
 //
-//    public List<LogWorkDto> getAllLogWorkByUserId(long userId){
-//        List<LogWorkModel> logWorkModels = logWorkRepository.getLogWorkEntityByUserId(userId).stream().map(
-//                (logWorkEntity) -> this.entityToModel(logWorkEntity)
-//        ).collect(Collectors.toList());
-//        List<LogWorkDto> logWorkDtos = logWorkModels.stream().map(
-//                (logWorkModel) -> LogWorkModel.modelToDto(logWorkModel)).collect(Collectors.toList());
-//        return logWorkDtos;
-//    }
-//
-//    private LogWorkEntity modelToEntity(LogWorkModel model){
-//        LogWorkEntity entity = new LogWorkEntity();
-//        entity.setId(model.getId());
-//        entity.setDay(model.getDay());
-//        entity.setMonth(model.getMonth());
-//        entity.setYear(model.getYear());
-//        entity.setStartTime(model.getStartTime());
-//        entity.setEndTime(model.getEndTime());
-//        entity.setWorkTime(model.getWorkTime());
-//        entity.setOverTime(model.getOverTime());
-//        entity.setUserEntity(userRepository.findById(model.getUserId()).get());
-//        entity.setRequestEntityList(model.getRequestIds().stream().map(
-//                (id) -> requestRepository.findById(id).get()
-//        ).collect(Collectors.toList()));
-//        return entity;
-//    }
-//
-//    public LogWorkModel entityToModel(LogWorkEntity entity){
-//        LogWorkModel model = new LogWorkModel();
-//        model.setId(entity.getId());
-//        model.setDay(entity.getDay());
-//        model.setMonth(entity.getMonth());
-//        model.setYear(entity.getYear());
-//        model.setStartTime(entity.getStartTime());
-//        model.setEndTime(entity.getEndTime());
-//        model.setWorkTime(entity.getWorkTime());
-//        model.setOverTime(entity.getOverTime());
-//        model.setUserId(entity.getUserEntity().getId());
-//        model.setRequestIds(entity.getRequestEntityList().stream().map(
-//                (requestEntity) -> requestEntity.getId()
-//        ).collect(Collectors.toList()));
-//        return model;
-//>>>>>>> 1cf75d5bb53235ee7c96d3d78f7bff406952f058
-//    }
+    public List<LogWorkDto> getAllLogWorkByUserId(long userId){
+        List<LogWorkModel> logWorkModels = iLogWorkRepository.getLogWorkEntityByUserId(userId).stream().map(
+                (logWorkEntity) -> this.entityToModel(logWorkEntity)
+        ).collect(Collectors.toList());
+        List<LogWorkDto> logWorkDtos = logWorkModels.stream().map(
+                (logWorkModel) -> LogWorkModel.modelToDto(logWorkModel)).collect(Collectors.toList());
+        return logWorkDtos;
+    }
+
+    private LogWorkEntity modelToEntity(LogWorkModel model){
+        LogWorkEntity entity = new LogWorkEntity();
+        entity.setId(model.getId());
+        entity.setDay(model.getDay());
+        entity.setMonth(model.getMonth());
+        entity.setYear(model.getYear());
+        entity.setStartTime(model.getStartTime());
+        entity.setEndTime(model.getEndTime());
+        entity.setWorkTime(model.getWorkTime());
+        entity.setOverTime(model.getOverTime());
+        entity.setUserEntity(iUserRepository.findById(model.getUserId()).get());
+        entity.setRequestEntityList(model.getRequestIds().stream().map(
+                (id) -> iRequestRepository.findById(id).get()
+        ).collect(Collectors.toList()));
+        return entity;
+    }
+
+    public LogWorkModel entityToModel(LogWorkEntity entity){
+        LogWorkModel model = new LogWorkModel();
+        model.setId(entity.getId());
+        model.setDay(entity.getDay());
+        model.setMonth(entity.getMonth());
+        model.setYear(entity.getYear());
+        model.setStartTime(entity.getStartTime());
+        model.setEndTime(entity.getEndTime());
+        model.setWorkTime(entity.getWorkTime());
+        model.setOverTime(entity.getOverTime());
+        model.setUserId(entity.getUserEntity().getId());
+        model.setRequestIds(entity.getRequestEntityList().stream().map(
+                (requestEntity) -> requestEntity.getId()
+        ).collect(Collectors.toList()));
+        return model;
+    }
 }
