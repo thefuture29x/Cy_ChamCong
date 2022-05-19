@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/v1/api/user")
+@RequestMapping("/api/v1/user")
 public class UserResource {
     @Autowired
     IUserService iUserService;

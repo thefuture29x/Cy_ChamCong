@@ -5,7 +5,6 @@ import com.example.demologwork.dto.ResponseDTO;
 import com.example.demologwork.jwt.JwtTokenProvider;
 import com.example.demologwork.jwt.payload.request.LoginRequest;
 import com.example.demologwork.jwt.payload.response.LoginResponse;
-import com.example.demologwork.jwt.payload.response.RoleResponse;
 import com.example.demologwork.repository.IRoleRepository;
 import com.example.demologwork.repository.IUserRepository;
 import com.example.demologwork.service.impl.UserDetailsImpl;
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @RestController
-@RequestMapping("/v1/api")
+@RequestMapping("/api/v1")
 public class LoginResource {
     @Autowired
     AuthenticationManager authenticationManager;
@@ -49,28 +51,23 @@ public class LoginResource {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         if (userDetails == null) throw new Exception("User not found !");
         String jwtToken = jwtTokenProvider.generateTokenFormUsername(userDetails.getUsername());
-
-        AtomicReference<Long> roleId = new AtomicReference<>(0L);
-        RoleResponse roleResponse = new RoleResponse();
-        userDetails.getAuthorities().stream().forEach(role ->{
-                if (role.equals("ROLE_USER")) {
-                    roleResponse.setIdrole(3L);
-                }else if(role.equals("ROLE_LEADER")){
-                    roleResponse.setIdrole(2L);
-                }else{
-                    roleResponse.setIdrole(1L);
-                }
-
+        List<Long> listId = new ArrayList<>();
+        List<SimpleGrantedAuthority> roleEntities = (List<SimpleGrantedAuthority>) authentication.getAuthorities();
+        for (SimpleGrantedAuthority simple : roleEntities) {
+            if (simple.getAuthority().equals("ROLE_ADMIN")) {
+                listId.add(1L);
+            }else if (simple.getAuthority().equals("ROLE_LEADER")){
+                listId.add(2L);
+            }else{
+                listId.add(3L);
             }
-        );
-
-
+        }
         return ResponseDTO.of(LoginResponse.builder()
                 .id(userDetails.getUserEntity().getId())
                 .username(userDetails.getUsername())
                 .accessToken(jwtToken)
                 .tokenType(new LoginResponse().getTokenType())
-                .role(roleResponse.getIdrole())
+                .role(Collections.min(listId))
                 .build(),"Login");
 
     }

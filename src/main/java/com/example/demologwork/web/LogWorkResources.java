@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
-@RequestMapping(value = "/v1/api/logwork")
+@RequestMapping(value = "/api/v1/logwork")
 @RestController
 public class LogWorkResources {
     @Autowired
