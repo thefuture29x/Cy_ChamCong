@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,7 +64,12 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public RequestEntity update(RequestModel model) {
-        return null;
+        RequestEntity original = requestRepository.findById(model.getId())
+                .orElseThrow(() -> new RuntimeException("Request not found"));
+
+        original.setStatus(model.getStatus());
+
+        return requestRepository.save(original);
     }
 
     @Override
