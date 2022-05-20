@@ -48,6 +48,7 @@ public class LogWorkServiceImpl implements ILogWorkService<LogWorkEntity, LogWor
     @Override
     public LogWorkEntity add(LogWorkModel model) {
         LogWorkEntity logWorkEntity = LogWorkModel.toEntity(model);
+        logWorkEntity.setUserEntity(iUserRepository.findById(model.getUserId()).get());
         return iLogWorkRepository.save(logWorkEntity);
     }
 

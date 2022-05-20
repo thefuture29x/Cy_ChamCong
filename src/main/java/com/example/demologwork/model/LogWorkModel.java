@@ -25,7 +25,6 @@ public class LogWorkModel {
     private Time endTime;
     private Time workTime;
     private Time overTime;
-    private UserModel userModel;
     private List<RequestModel> requestList;
 
     public static LogWorkModel toDto(LogWorkEntity entity) {

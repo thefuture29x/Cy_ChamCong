@@ -1,5 +1,6 @@
 package com.example.demologwork.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,8 @@ public class RequestEntity {
     @Column(name = "timerequest")
     private Time timeRequest;
     private String status;
+
+    @JsonIgnoreProperties(value = "requestEntityList")
     @ManyToOne
     @JoinColumn(name = "id_logwork")
     private LogWorkEntity logWork;

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/checkrequest")
+@RequestMapping("/api/v1/checkrequest")
 public class CheckRequest {
     @Autowired
     IRequestRepository requestRepository;
@@ -34,8 +34,7 @@ public class CheckRequest {
     }
     @PatchMapping(value = "{id}")
     @Transactional
-
-    public Object updateQuestion(@PathVariable Long id,@RequestBody RequestModel requestModel){
+    public Object updateStatus(@PathVariable Long id,@RequestBody RequestModel requestModel){
         requestModel.setId(id);
         RequestDto questionDto = RequestDto.toDto(requestService.update(requestModel));
         return ResponseDTO.of(questionDto,"update");

@@ -1,5 +1,6 @@
 package com.example.demologwork.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,10 +34,12 @@ public class LogWorkEntity {
     @Column(name = "overtime")
     private Time overTime;
 
+    @JsonIgnoreProperties(value = "logWorkEntities")
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
+    @JsonIgnoreProperties(value = "logWork")
     @OneToMany(mappedBy = "logWork")
     private List<RequestEntity> requestEntityList;
 }
