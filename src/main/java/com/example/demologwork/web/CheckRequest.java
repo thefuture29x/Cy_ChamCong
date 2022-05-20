@@ -32,9 +32,13 @@ public class CheckRequest {
         RequestDto requestDto = RequestDto.toDto(requestService.add(requestModel));
         return ResponseDTO.of(requestDto,"add");
     }
- /*   @PostMapping("/add")
-    RequestEntity newEmployee(@RequestBody RequestEntity newEmployee) {
-        return requestRepository.save(newEmployee);
-    }*/
+    @PatchMapping(value = "{id}")
+    @Transactional
+
+    public Object updateQuestion(@PathVariable Long id,@RequestBody RequestModel requestModel){
+        requestModel.setId(id);
+        RequestDto questionDto = RequestDto.toDto(requestService.update(requestModel));
+        return ResponseDTO.of(questionDto,"update");
+    }
 
 }
